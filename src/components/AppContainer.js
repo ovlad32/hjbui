@@ -2,15 +2,13 @@ import React, { useState } from 'react'
 
 const joints = [
     {
-        "Z0": {
-            "cardinality": 100,
-            "lake-column": {
-                "column-name": "ID",
-            }
-        }
+        cardinality:100,
+        lake:[
+            "ID","CURRENCY","COLLATERAL_VALUE"
+        ],
+        base:["CURRENCY_CODE","INFORMER_ID"],
 
     }
-
 ];
 
 const AppContainer = (props) => {
