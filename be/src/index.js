@@ -21,7 +21,7 @@ app.get("/grps/:id/:mode", (req, res) => {
   try {
     console.log(req.params);
 
-    sqlite.all(
+    db.all(
       `select 
         g.id as id,
         g.name as name,
@@ -38,30 +38,30 @@ app.get("/grps/:id/:mode", (req, res) => {
         from grps g
          inner join grp_jnts j on j.grp_id = g.id
          inner join grp_jnt_cols jc on jc.grp_jnt_id = j.id
-         inner join mtd_cols on c.id = jc.mtd_col_id
-      where id = $id`,
+         inner join mtd_cols c on c.id = jc.mtd_col_id
+      where g.id = $id`,
       {
         $id: req.params.id,
       },
       (err, rows) => {
         if (err) throw err;
-
-        switch (res.params.mode) {
+        switch (req.params.mode) {
           case "detailed":
             res.json(rows);
             break;
           default:
-            rows.forEach((row) => {
+            if (rows.length) {
               res.json({
-                id: row.id,
-                name: row.name,
+                id: rows[0].id,
+                name: rows[0].name,
               });
               return;
-            });
+            }
         }
       }
     );
   } catch (err) {
+    console.log(err);
     res.status(500).send(err);
   }
 });
