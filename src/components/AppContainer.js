@@ -58,20 +58,24 @@ const AppContainer = (props) => {
   }, []);
   return (
     <>
-      {grp.jnts?.map((j) => (
-        <div key={j.jntId}>
-          <div style={{ display: "inline-block", backgroundColor: "wheat" }}>
-            {j.lakeColumns.map((c) => (
-              <p key={c}>{c}</p>
-            ))}
+      <Stack>
+        {grp.jnts?.map((j) => (
+          <div key={j.jntId}>
+            <div style={{ display: "inline-block", backgroundColor: "wheat" }}>
+              {j.lakeColumns.map((c) => (
+                <p key={c}>{c}</p>
+              ))}
+            </div>
+            <div
+              style={{ display: "inline-block", backgroundColor: "red    " }}
+            >
+              {j.baseColumns.map((c) => (
+                <p key={c}>{c}</p>
+              ))}
+            </div>
           </div>
-          <div style={{ display: "inline-block", backgroundColor: "red    " }}>
-            {j.baseColumns.map((c) => (
-              <p key={c}>{c}</p>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))}
+      </Stack>
     </>
   );
 };
