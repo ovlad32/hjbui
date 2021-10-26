@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
+
+
 const jmap = (jntRows) => {
   console.log(jntRows);
   let jntMap = jntRows.reduce((jntMap, row) => {
@@ -61,18 +67,16 @@ const AppContainer = (props) => {
       <Stack>
         {grp.jnts?.map((j) => (
           <div key={j.jntId}>
-            <div style={{ display: "inline-block", backgroundColor: "wheat" }}>
+            <Paper>
               {j.lakeColumns.map((c) => (
                 <p key={c}>{c}</p>
               ))}
-            </div>
-            <div
-              style={{ display: "inline-block", backgroundColor: "red    " }}
-            >
+            </Paper>
+            <Paper>
               {j.baseColumns.map((c) => (
                 <p key={c}>{c}</p>
               ))}
-            </div>
+            </Paper>
           </div>
         ))}
       </Stack>
