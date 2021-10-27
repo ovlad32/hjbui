@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import { Typography } from "@mui/material";
 
 
 
@@ -58,7 +59,7 @@ const jmap = (jntRows) => {
 const AppContainer = (props) => {
   const [grp, setGrp] = useState([]);
   useEffect(() => {
-    fetch("/grps/2/detailed")
+    fetch("/grps/1/detailed")
       .then((r) => r.json())
       .then((r) => setGrp(jmap(r)));
   }, []);
@@ -68,14 +69,16 @@ const AppContainer = (props) => {
         {grp.jnts?.map((j) => (
           <div key={j.jntId}>
             <Paper>
+              <Typography >
               {j.lakeColumns.map((c) => (
                 <p key={c}>{c}</p>
               ))}
-            </Paper>
-            <Paper>
+              </Typography>
+              <Typography>
               {j.baseColumns.map((c) => (
                 <p key={c}>{c}</p>
               ))}
+              </Typography>
             </Paper>
           </div>
         ))}
