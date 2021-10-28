@@ -2,9 +2,18 @@ import React, { useEffect, useState } from "react";
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import { Checkbox, FormControlLabel, Typography, Card, CardHeader, CardContent, Grid, Container } from "@mui/material";
 
 
-
+/*
+              {j.baseColumns.map((c) => (
+                <FormControlLabel key={c}
+                label={c}
+                control={
+                  <Checkbox/> 
+                }
+                />
+              )}*/
 const jmap = (jntRows) => {
   console.log(jntRows);
   let jntMap = jntRows.reduce((jntMap, row) => {
@@ -64,22 +73,34 @@ const AppContainer = (props) => {
   }, []);
   return (
     <>
-      <Stack>
+      <Grid container direction="column"  >
         {grp.jnts?.map((j) => (
-          <div key={j.jntId}>
-            <Paper>
-              {j.lakeColumns.map((c) => (
-                <p key={c}>{c}</p>
-              ))}
-            </Paper>
-            <Paper>
-              {j.baseColumns.map((c) => (
-                <p key={c}>{c}</p>
-              ))}
-            </Paper>
-          </div>
+          <Grid key={j.jntId} container justifyContent="center" spacing={2}>
+            <Grid item xs={4}>
+              <Grid container direction="column" >
+                {j.lakeColumns.map((c) => (
+                  <Grid item key={c}>
+                    <FormControlLabel
+                      label={c}
+                      control={<Checkbox />}
+                    />
+                  </Grid>))}
+              </Grid>
+            </Grid>
+            <Grid item xs={4}>
+              <Grid container direction="column" >
+                {j.baseColumns.map((c) => (
+                  <Grid item key={c}>
+                    <FormControlLabel
+                      label={c}
+                      control={<Checkbox />}
+                    />
+                  </Grid>))}
+              </Grid>
+            </Grid>
+          </Grid>
         ))}
-      </Stack>
+      </Grid>
     </>
   );
 };
