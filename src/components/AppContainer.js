@@ -67,7 +67,7 @@ const jmap = (jntRows) => {
 const AppContainer = (props) => {
   const [grp, setGrp] = useState([]);
   useEffect(() => {
-    fetch("/grps/2/detailed")
+    fetch("/grps/1/detailed")
       .then((r) => r.json())
       .then((r) => setGrp(jmap(r)));
   }, []);
