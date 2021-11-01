@@ -1,12 +1,12 @@
 import React from 'react';
-import AppContainer from './AppContainer'
+import PairTable from './PairTable'
 import { Header } from './Header'
 
 export const App = () => {
   return (
     <>
       <Header />
-      <AppContainer />
+      <PairTable />
     </>
   )
 }

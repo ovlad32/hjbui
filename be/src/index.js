@@ -66,6 +66,22 @@ app.get("/grps/:id/:mode", (req, res) => {
   }
 });
 
+app.get('/pairs', (req, res) => {
+  db.all(
+    `select * from grp_pairs 
+     order by 
+       group_count, cardinality_max desc,
+       lake_column_name, base_column_name`,
+    (err, rows) => {
+      if (err) throw err;
+      res.json(rows)
+      return;
+    }
+  )
+
+});
+
+
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`express listening at http://localhost:${port}`);
 });
